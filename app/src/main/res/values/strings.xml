@@ -1,3 +1,4 @@
 <resources>
+    <string name="sky">Небо</string>
     <string name="app_name">severalActivities</string>
 </resources>

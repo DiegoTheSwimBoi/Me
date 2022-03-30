@@ -4,6 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.severalactivities.databinding.ActivityMainBinding
+import android.widget.RatingBar
+
+
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -13,14 +17,21 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+
         val bt_toact2 = binding.buttonToact2
         bt_toact2.setOnClickListener {
 //           Intent - намерение, механизм описания операции
             //создать намерение вызвать вторую активити
             val act2_start = Intent(this, activ2::class.java)
-            val name = binding.textView.text.toString()
+            val name = binding.PersonName.text.toString()
+            val age = binding.Age.text.toString()
+
+
+
+
             //метод putExtra класса Intent позволяет отдавать данные в связке ключ+значение
             act2_start.putExtra("name", name)
+            act2_start.putExtra("age",age)
             //запуск второго активити
 startActivity(act2_start)
         }
