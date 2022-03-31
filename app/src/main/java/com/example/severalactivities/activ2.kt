@@ -8,8 +8,8 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.graphics.drawable.AnimationDrawable;
-import android.os.CountDownTimer
-import kotlin.concurrent.timer
+// import android.os.CountDownTimer
+// import kotlin.concurrent.timer
 
 
 class activ2 : AppCompatActivity() {
@@ -26,26 +26,40 @@ class activ2 : AppCompatActivity() {
         var name: String = names.random()
         var age: Int = 1
 
+        var hunger: Int = (200..300).random()
+        var maxhunger: Int = 500
+        var minhunger: Int = 150
+
         if(arguments!=null) {
             //метод get позволяет получить значение по ключу
             name = arguments.get("name").toString()
-            age = arguments.get("age").toString().toInt()
+            age = arguments.get("age").toString()
 
             if(name.toString()==""){
                 name=names.random();
             }
+
+            if(age.toString()==""){
+                age="1"
+            }
+
+            age.toString().toInt()
         }
+
         binding.textView2.text = binding.textView2.text.toString()+" "+name
         binding.textView6.text=binding.textView6.text.toString()+"Возраст "+age+" лет"
 
-
+        // Анимация 
         var image: ImageView = binding.me
         image.setBackgroundResource(R.drawable.blink)
-//        var animation: AnimationDrawable = image.getBackground()
         var animation: AnimationDrawable = image.getBackground() as AnimationDrawable
-
-
         animation.start()
+        //
+
+
+
+
+        
 
 
         val btn_toact1 = binding.buttonToact1
@@ -58,37 +72,26 @@ class activ2 : AppCompatActivity() {
         btn_feed.setOnClickListener{
             binding.textView5.text=""
             binding.textView5.text=binding.textView5.text.toString()+"Вы покормили "+name
-
-            val timer = object: CountDownTimer(50, 1000) {
-
-                override fun onTick(millisUntilFinished: Long) {
-                    binding.textView5.text=binding.textView5.text.toString()+"\n"+"Он доволен"
-                }
-
-                override fun onFinish() {
-                    binding.textView5.text=binding.textView5.text.toString()+""
-                }
+            if(hunger>maxhunger){
+                binding.textView5.text=binding.textView5.text.toString()+"\n"+"Он наелся"
+                
+            }else{
+                binding.textView5.text=binding.textView5.text.toString()+"\n"+"Освежился"
+                hunger+=20
             }
-            timer.start()
-
         }
 
         val btn_go=binding.buttonGo
         btn_go.setOnClickListener {
             binding.textView5.text=""
             binding.textView5.text=binding.textView5.text.toString()+"Вы погуляли с "+name
-
-            val timer = object: CountDownTimer(50, 1000) {
-
-                override fun onTick(millisUntilFinished: Long) {
-                    binding.textView5.text=binding.textView5.text.toString()+"\n"+"Он доволен"
-                }
-
-                override fun onFinish() {
-                    binding.textView5.text=binding.textView5.text.toString()+""
-                }
+            if(hunger<minhunger){
+                binding.textView5.text=binding.textView5.text.toString()+"\n"+"Он голоден"
+                
+            }else{
+                binding.textView5.text=binding.textView5.text.toString()+"\n"+"Освежился"
+                hunger-=50
             }
-            timer.start()
         }
 
 
