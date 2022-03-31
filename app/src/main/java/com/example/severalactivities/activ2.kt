@@ -76,7 +76,7 @@ class activ2 : AppCompatActivity() {
                 binding.textView5.text=binding.textView5.text.toString()+"\n"+"Он наелся"
                 
             }else{
-                binding.textView5.text=binding.textView5.text.toString()+"\n"+"Освежился"
+                binding.textView5.text=binding.textView5.text.toString()+"\n"+"Он покушал"
                 hunger+=20
             }
         }
